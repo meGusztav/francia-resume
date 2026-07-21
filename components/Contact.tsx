@@ -14,7 +14,6 @@ function LinkedinIcon({ size = 18 }: { size?: number }) {
 
 const socials = [
   { label: "LinkedIn", href: profile.linkedin, external: true, icon: <LinkedinIcon /> },
-  { label: "Phone", href: `tel:${profile.phone.replace(/\s+/g, "")}`, value: profile.phone },
 ];
 
 export default function Contact() {
@@ -68,7 +67,7 @@ export default function Contact() {
                     className="inline-flex items-center gap-2 font-mono text-[0.72rem] uppercase tracking-[0.14em] text-fg link-underline"
                   >
                     {s.icon}
-                    {s.value ?? s.label}
+                    {s.label}
                   </a>
                 ))}
                 <a

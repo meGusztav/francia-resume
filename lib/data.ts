@@ -3,7 +3,6 @@ export const profile = {
   initials: "WF",
   title: "Project / Product Manager",
   location: "Manila, Philippines",
-  phone: "+63 917 308 9040",
   email: "gusztavfrancia97@gmail.com",
   linkedin: "https://www.linkedin.com/in/wilhelm-gusztav-francia",
   linkedinLabel: "linkedin.com/in/wilhelm-gusztav-francia",
