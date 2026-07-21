@@ -7,7 +7,7 @@ export const profile = {
   email: "gusztavfrancia97@gmail.com",
   linkedin: "https://www.linkedin.com/in/wilhelm-gusztav-francia",
   linkedinLabel: "linkedin.com/in/wilhelm-gusztav-francia",
-  tagline: "I turn business objectives into roadmaps engineers actually want to build.",
+  tagline: "I turn business objectives into roadmaps engineers & operations actually want to build.",
   summary:
     "Project & Product Manager with 5+ years of experience translating business objectives into roadmaps and driving cross-functional execution across platform, infrastructure, and operations. Proven at facilitating planning workshops, mentoring delivery leaders, and presenting KPIs to C-level executives to enable strategic decision-making. Strong technical foundation bridging product strategy and engineering execution. Fluent in English and Filipino.",
   competencies: [
