@@ -20,6 +20,18 @@ export const profile = {
   ],
 };
 
+export const keywords = [
+  "Product Strategy",
+  "Roadmapping",
+  "Cross-functional Leadership",
+  "Agile & OKRs",
+  "Delivery Governance",
+  "Change Management",
+  "Platform Architecture",
+  "Stakeholder Alignment",
+  "KPI-driven Execution",
+];
+
 export const highlights = [
   {
     metric: "30%",

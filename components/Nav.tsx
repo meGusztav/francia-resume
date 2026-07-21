@@ -1,16 +1,15 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Download, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { profile } from "@/lib/data";
 
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#highlights", label: "Highlights" },
-  { href: "#experience", label: "Experience" },
-  { href: "#skills", label: "Skills" },
-  { href: "#education", label: "Education" },
-  { href: "#contact", label: "Contact" },
+  { href: "#about", label: "About", n: "01" },
+  { href: "#work", label: "Work", n: "02" },
+  { href: "#experience", label: "Experience", n: "03" },
+  { href: "#skills", label: "Skills", n: "04" },
+  { href: "#contact", label: "Contact", n: "05" },
 ];
 
 export default function Nav() {
@@ -26,71 +25,71 @@ export default function Nav() {
   }, []);
 
   useEffect(() => {
-    const sections = links
-      .map((l) => document.querySelector(l.href))
-      .filter((el): el is Element => !!el);
+    const ids = ["about", "work", "experience", "skills", "education", "contact"];
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => !!el);
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(`#${entry.target.id}`);
-          }
+          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
         });
       },
-      { rootMargin: "-40% 0px -50% 0px", threshold: 0 }
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
     );
-
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
   }, []);
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass py-3 shadow-lg shadow-black/20" : "py-5"
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? "border-b border-line bg-bg/80 py-3 backdrop-blur-md"
+          : "py-5"
       }`}
     >
-      <nav className="section-container flex items-center justify-between">
-        <a
-          href="#top"
-          className="font-display font-semibold text-lg tracking-tight text-gradient"
-        >
-          {profile.initials}
+      <nav className="wrap flex items-center justify-between">
+        <a href="#top" className="group flex items-baseline gap-2">
+          <span className="font-serif text-lg font-semibold tracking-tight">
+            Wilhelm Francia
+          </span>
+          <span className="hidden font-mono text-[0.65rem] uppercase tracking-[0.2em] text-muted sm:inline">
+            / PM
+          </span>
         </a>
 
-        <ul className="hidden md:flex items-center gap-1">
+        <ul className="hidden items-center gap-7 md:flex">
           {links.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className={`px-3 py-2 rounded-full text-sm transition-colors ${
+                className={`group flex items-center gap-1.5 font-mono text-[0.7rem] uppercase tracking-[0.18em] transition-colors ${
                   active === link.href
-                    ? "text-foreground bg-white/5"
-                    : "text-muted hover:text-foreground"
+                    ? "text-accent"
+                    : "text-muted hover:text-fg"
                 }`}
               >
+                <span className="text-[0.6rem] opacity-60">{link.n}</span>
                 {link.label}
               </a>
             </li>
           ))}
         </ul>
 
-        <div className="hidden md:block">
-          <a
-            href="/resume.pdf"
-            download
-            className="inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-white/10"
-          >
-            <Download size={16} />
-            Resume
-          </a>
-        </div>
+        <a
+          href="/resume.pdf"
+          download
+          className="hidden font-mono text-[0.7rem] uppercase tracking-[0.18em] text-fg link-underline md:inline-block"
+        >
+          Resume ↓
+        </a>
 
         <button
           type="button"
           aria-label="Toggle menu"
-          className="md:hidden text-foreground"
+          className="text-fg md:hidden"
           onClick={() => setOpen((v) => !v)}
         >
           {open ? <X size={22} /> : <Menu size={22} />}
@@ -98,25 +97,25 @@ export default function Nav() {
       </nav>
 
       {open && (
-        <div className="md:hidden section-container mt-3 pb-4">
-          <div className="glass rounded-2xl p-4 flex flex-col gap-1">
+        <div className="wrap mt-4 md:hidden">
+          <div className="flex flex-col gap-1 border-t border-line pt-4">
             {links.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="px-3 py-2.5 rounded-lg text-sm text-muted hover:text-foreground hover:bg-white/5"
+                className="flex items-center gap-3 py-2.5 font-mono text-sm uppercase tracking-[0.15em] text-muted"
               >
+                <span className="text-xs text-accent">{link.n}</span>
                 {link.label}
               </a>
             ))}
             <a
               href="/resume.pdf"
               download
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full border border-border bg-white/5 px-4 py-2.5 text-sm font-medium text-foreground"
+              className="mt-2 py-2.5 font-mono text-sm uppercase tracking-[0.15em] text-fg"
             >
-              <Download size={16} />
-              Download Resume
+              Resume ↓
             </a>
           </div>
         </div>

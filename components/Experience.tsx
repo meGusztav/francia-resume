@@ -1,69 +1,68 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { experience } from "@/lib/data";
+import SectionHeader from "./SectionHeader";
+import Reveal from "./Reveal";
 
 export default function Experience() {
   return (
-    <section id="experience" className="relative py-24 sm:py-32">
-      <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-14 max-w-2xl"
-        >
-          <span className="text-sm font-medium uppercase tracking-widest text-accent">
-            Experience
-          </span>
-          <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-            Where I&apos;ve driven delivery
-          </h2>
-        </motion.div>
+    <section id="experience" className="relative py-28 sm:py-40">
+      <div className="wrap">
+        <SectionHeader
+          index="03"
+          eyebrow="Experience"
+          title={
+            <>
+              Where I&apos;ve driven <span className="italic">delivery.</span>
+            </>
+          }
+          className="mb-20"
+        />
 
-        <div className="relative">
-          <div className="absolute left-[7px] top-2 bottom-2 hidden w-px bg-border sm:block" />
-          <div className="space-y-10">
-            {experience.map((job, i) => (
-              <motion.div
-                key={job.role + job.company}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="relative sm:pl-10"
-              >
-                <span className="absolute left-0 top-2 hidden h-4 w-4 rounded-full border-2 border-accent bg-background sm:block" />
-
-                <div className="glass rounded-3xl p-6 sm:p-8">
-                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                    <h3 className="font-display text-xl font-semibold text-foreground">
-                      {job.role}
-                    </h3>
-                    <span className="text-sm text-muted">{job.period}</span>
+        <div>
+          {experience.map((job, i) => (
+            <Reveal key={job.role + job.company}>
+              <article className="group grid gap-6 border-t border-line py-10 transition-colors md:grid-cols-12 md:gap-8">
+                <div className="md:col-span-4">
+                  <div className="flex items-baseline gap-4">
+                    <span className="font-mono text-xs text-accent">
+                      0{i + 1}
+                    </span>
+                    <span className="font-mono text-xs uppercase tracking-[0.14em] text-muted">
+                      {job.period}
+                    </span>
                   </div>
-                  <div className="mt-1 flex flex-wrap items-center gap-x-2 text-sm text-accent">
-                    <span className="font-medium">{job.company}</span>
-                    <span className="text-muted">- {job.companyBlurb}</span>
+                  <div className="mt-4 font-serif text-lg text-fg">
+                    {job.company}
                   </div>
-                  <p className="mt-0.5 text-sm text-muted">{job.location}</p>
+                  <p className="mt-1 max-w-xs text-sm leading-relaxed text-muted">
+                    {job.companyBlurb}
+                  </p>
+                  <p className="mt-2 font-mono text-[0.68rem] uppercase tracking-[0.12em] text-muted/70">
+                    {job.location}
+                  </p>
+                </div>
 
-                  <ul className="mt-5 space-y-2.5">
+                <div className="md:col-span-8">
+                  <h3 className="font-serif text-2xl font-medium leading-snug text-fg transition-colors group-hover:text-accent sm:text-3xl">
+                    {job.role}
+                  </h3>
+                  <ul className="mt-5 space-y-3">
                     {job.bullets.map((b) => (
                       <li
                         key={b}
-                        className="flex gap-3 text-sm leading-relaxed text-foreground/80"
+                        className="flex gap-3 text-sm leading-relaxed text-muted"
                       >
-                        <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted" />
-                        {b}
+                        <span className="mt-2 h-px w-4 shrink-0 bg-accent/60" />
+                        <span className="max-w-2xl">{b}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              </article>
+            </Reveal>
+          ))}
+          <div className="border-t border-line" />
         </div>
       </div>
     </section>

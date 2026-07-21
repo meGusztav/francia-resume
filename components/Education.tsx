@@ -1,79 +1,65 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { GraduationCap, Award } from "lucide-react";
 import { education, certifications } from "@/lib/data";
+import Reveal from "./Reveal";
 
 export default function Education() {
   return (
-    <section id="education" className="relative py-24 sm:py-32">
-      <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-14 max-w-2xl"
-        >
-          <span className="text-sm font-medium uppercase tracking-widest text-accent">
-            Education
-          </span>
-          <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-            Education &amp; credentials
-          </h2>
-        </motion.div>
+    <section id="education" className="relative py-28 sm:py-40">
+      <div className="wrap">
+        <div className="grid gap-x-16 gap-y-12 md:grid-cols-12">
+          <div className="md:col-span-4">
+            <Reveal>
+              <span className="eyebrow">Credentials / 05</span>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="font-serif mt-6 text-3xl font-medium leading-tight tracking-tight sm:text-4xl">
+                Education &amp; <span className="italic">certifications.</span>
+              </h2>
+            </Reveal>
+          </div>
 
-        <div className="grid gap-5 md:grid-cols-2">
-          {education.map((edu, i) => (
-            <motion.div
-              key={edu.school}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5, delay: i * 0.06 }}
-              className="glass rounded-3xl p-6 sm:p-8"
-            >
-              <div className="flex items-start gap-4">
-                <div className="rounded-2xl border border-border bg-white/5 p-3 text-accent">
-                  <GraduationCap size={20} />
+          <div className="md:col-span-8">
+            {education.map((edu) => (
+              <Reveal key={edu.school}>
+                <div className="grid gap-2 border-t border-line py-8 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-8">
+                  <div>
+                    <h3 className="font-serif text-2xl font-medium text-fg">
+                      {edu.degree}
+                    </h3>
+                    <p className="mt-1 text-accent">{edu.school}</p>
+                    <p className="mt-2 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-muted">
+                      {edu.detail}
+                    </p>
+                  </div>
+                  <div className="font-mono text-xs uppercase tracking-[0.12em] text-muted sm:text-right">
+                    <div>{edu.location}</div>
+                    <div className="mt-1">{edu.period}</div>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-display text-lg font-semibold text-foreground">
-                    {edu.degree}
-                  </h3>
-                  <p className="mt-1 text-sm text-accent">{edu.school}</p>
-                  <p className="text-sm text-muted">
-                    {edu.location} · {edu.period}
-                  </p>
-                  <p className="mt-2 text-sm text-foreground/80">{edu.detail}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </Reveal>
+            ))}
 
-          {certifications.map((cert, i) => (
-            <motion.div
-              key={cert.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5, delay: (education.length + i) * 0.06 }}
-              className="glass rounded-3xl p-6 sm:p-8 md:col-span-2"
-            >
-              <div className="flex items-start gap-4">
-                <div className="rounded-2xl border border-border bg-white/5 p-3 text-accent">
-                  <Award size={20} />
+            {certifications.map((cert) => (
+              <Reveal key={cert.name}>
+                <div className="grid gap-2 border-t border-line py-8 sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-8">
+                  <div>
+                    <h3 className="font-serif text-2xl font-medium text-fg">
+                      {cert.name}
+                    </h3>
+                    <p className="mt-1 text-accent">{cert.issuer}</p>
+                    <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted">
+                      {cert.detail}
+                    </p>
+                  </div>
+                  <div className="font-mono text-xs uppercase tracking-[0.12em] text-muted sm:text-right">
+                    Certificate
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-display text-lg font-semibold text-foreground">
-                    {cert.name}
-                  </h3>
-                  <p className="mt-1 text-sm text-accent">{cert.issuer}</p>
-                  <p className="mt-2 text-sm text-foreground/80">{cert.detail}</p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </Reveal>
+            ))}
+            <div className="border-t border-line" />
+          </div>
         </div>
       </div>
     </section>

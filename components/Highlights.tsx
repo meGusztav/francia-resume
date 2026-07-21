@@ -1,53 +1,65 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { highlights } from "@/lib/data";
+import Reveal from "./Reveal";
+
+// Asymmetric spans so the grid never reads as a uniform robot-made matrix.
+const spans = [
+  "sm:col-span-4",
+  "sm:col-span-2",
+  "sm:col-span-2",
+  "sm:col-span-4",
+];
 
 export default function Highlights() {
   return (
-    <section id="highlights" className="relative py-24 sm:py-32">
-      <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-14 max-w-2xl"
-        >
-          <span className="text-sm font-medium uppercase tracking-widest text-accent">
-            Impact
-          </span>
-          <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-            Selected highlights
-          </h2>
-        </motion.div>
+    <section id="work" className="paper relative py-28 sm:py-40">
+      <div className="wrap">
+        <div className="relative mb-16 flex flex-wrap items-end justify-between gap-6">
+          <div>
+            <Reveal>
+              <span className="eyebrow">Selected impact / 02</span>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="font-serif mt-5 text-4xl font-medium leading-[1.02] tracking-tight sm:text-6xl">
+                Numbers I&apos;m
+                <br />
+                <span className="italic text-accent">proud of.</span>
+              </h2>
+            </Reveal>
+          </div>
+          <Reveal delay={0.1}>
+            <p className="max-w-xs font-mono text-xs uppercase leading-relaxed tracking-[0.12em] text-[color:var(--muted-ink)]">
+              A few outcomes from shipping across platform, disaster-response
+              ops, and enterprise commerce.
+            </p>
+          </Reveal>
+        </div>
 
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-px border border-line bg-[color:var(--line-ink)] sm:grid-cols-6">
           {highlights.map((h, i) => (
-            <motion.div
+            <Reveal
               key={h.label}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="glass group relative overflow-hidden rounded-3xl p-8 transition-transform hover:-translate-y-1"
+              delay={i * 0.06}
+              className={`${spans[i]} bg-cream`}
             >
-              <div
-                className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-20"
-                style={{ background: "var(--accent-2)" }}
-              />
-              <div className="relative">
-                <div className="font-display text-4xl font-bold text-gradient sm:text-5xl">
-                  {h.metric}
+              <div className="group h-full p-8 transition-colors sm:p-10">
+                <div className="flex items-start justify-between">
+                  <span className="font-serif text-6xl font-semibold leading-none text-accent sm:text-7xl">
+                    {h.metric}
+                  </span>
+                  <span className="font-mono text-xs text-[color:var(--muted-ink)]">
+                    0{i + 1}
+                  </span>
                 </div>
-                <div className="mt-3 text-base font-semibold text-foreground">
+                <h3 className="font-serif mt-6 text-xl font-medium text-ink">
                   {h.label}
-                </div>
-                <p className="mt-3 text-sm leading-relaxed text-muted">
+                </h3>
+                <p className="mt-3 max-w-md text-sm leading-relaxed text-[color:var(--muted-ink)]">
                   {h.detail}
                 </p>
               </div>
-            </motion.div>
+            </Reveal>
           ))}
         </div>
       </div>

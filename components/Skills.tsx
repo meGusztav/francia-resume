@@ -1,54 +1,56 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { skills } from "@/lib/data";
+import SectionHeader from "./SectionHeader";
+import Reveal from "./Reveal";
 
 export default function Skills() {
   const groups = Object.entries(skills);
 
   return (
-    <section id="skills" className="relative py-24 sm:py-32">
-      <div className="section-container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-14 max-w-2xl"
-        >
-          <span className="text-sm font-medium uppercase tracking-widest text-accent">
-            Toolkit
-          </span>
-          <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-            Skills &amp; technical toolkit
-          </h2>
-        </motion.div>
+    <section id="skills" className="relative py-28 sm:py-40">
+      <div className="wrap">
+        <SectionHeader
+          index="04"
+          eyebrow="Toolkit"
+          title={
+            <>
+              The technical <span className="italic">foundation.</span>
+            </>
+          }
+          className="mb-20"
+        />
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div>
           {groups.map(([group, items], i) => (
-            <motion.div
-              key={group}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.5, delay: i * 0.06 }}
-              className="glass rounded-3xl p-6"
-            >
-              <h3 className="font-display text-sm font-semibold uppercase tracking-wide text-muted">
-                {group}
-              </h3>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {items.map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-border bg-white/5 px-3 py-1.5 text-sm text-foreground/90"
-                  >
-                    {item}
-                  </span>
-                ))}
+            <Reveal key={group}>
+              <div className="grid gap-4 border-t border-line py-8 md:grid-cols-12 md:gap-8">
+                <div className="md:col-span-3">
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-mono text-xs text-accent">
+                      0{i + 1}
+                    </span>
+                    <h3 className="font-mono text-[0.72rem] uppercase tracking-[0.16em] text-muted">
+                      {group}
+                    </h3>
+                  </div>
+                </div>
+                <div className="md:col-span-9">
+                  <div className="flex flex-wrap gap-x-6 gap-y-3">
+                    {items.map((item) => (
+                      <span
+                        key={item}
+                        className="font-serif text-xl text-fg/90 transition-colors hover:text-accent sm:text-2xl"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </motion.div>
+            </Reveal>
           ))}
+          <div className="border-t border-line" />
         </div>
       </div>
     </section>
