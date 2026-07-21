@@ -43,9 +43,9 @@ export default function Contact() {
               <span className="font-mono text-[0.7rem] uppercase tracking-[0.2em] text-muted">
                 Email me directly
               </span>
-              <span className="font-serif mt-2 break-all text-3xl text-fg transition-colors group-hover:text-accent sm:text-5xl">
+              <span className="font-serif mt-2 break-words text-[clamp(1.35rem,4.6vw,2.6rem)] leading-tight text-fg transition-colors group-hover:text-accent">
                 {profile.email}
-                <span className="ml-3 inline-block transition-transform group-hover:translate-x-2">
+                <span className="ml-2 inline-block transition-transform group-hover:translate-x-2">
                   ↗
                 </span>
               </span>
