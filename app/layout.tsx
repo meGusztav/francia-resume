@@ -15,11 +15,11 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Wilhelm Gusztav Francia — Project & Product Manager",
+  title: "Wilhelm Gusztav Francia - Project & Product Manager",
   description:
     "Project & Product Manager with 5+ years translating business objectives into roadmaps and driving cross-functional execution across platform, infrastructure, and operations.",
   openGraph: {
-    title: "Wilhelm Gusztav Francia — Project & Product Manager",
+    title: "Wilhelm Gusztav Francia - Project & Product Manager",
     description:
       "Project & Product Manager with 5+ years translating business objectives into roadmaps and driving cross-functional execution across platform, infrastructure, and operations.",
     type: "website",

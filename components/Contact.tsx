@@ -60,7 +60,7 @@ export default function Contact() {
           </h2>
           <p className="mt-4 text-muted">
             Open to Project & Product Manager roles and consulting engagements.
-            Reach out directly — I usually reply within a day.
+            Reach out directly - I usually reply within a day.
           </p>
         </motion.div>
 

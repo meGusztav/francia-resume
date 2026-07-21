@@ -45,7 +45,7 @@ export default function Experience() {
                   </div>
                   <div className="mt-1 flex flex-wrap items-center gap-x-2 text-sm text-accent">
                     <span className="font-medium">{job.company}</span>
-                    <span className="text-muted">— {job.companyBlurb}</span>
+                    <span className="text-muted">- {job.companyBlurb}</span>
                   </div>
                   <p className="mt-0.5 text-sm text-muted">{job.location}</p>
 

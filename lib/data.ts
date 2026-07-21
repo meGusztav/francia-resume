@@ -37,13 +37,13 @@ export const highlights = [
     metric: "4",
     label: "Enterprise storefronts, millions of users",
     detail:
-      "Led technical execution for Saks Fifth Avenue, Saks Off 5th, Vari, and Berkshire Hathaway — including Apple Pay and BOPIS rollouts.",
+      "Led technical execution for Saks Fifth Avenue, Saks Off 5th, Vari, and Berkshire Hathaway - including Apple Pay and BOPIS rollouts.",
   },
   {
     metric: "100+",
     label: "Users across a full tech migration",
     detail:
-      "Managed end-to-end technology programs — vendor selection, procurement, configuration, data migration — for field and office operations.",
+      "Managed end-to-end technology programs - vendor selection, procurement, configuration, data migration - for field and office operations.",
   },
 ];
 
